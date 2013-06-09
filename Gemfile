@@ -47,3 +47,6 @@ gem 'less-rails-bootstrap'
 gem 'stripe'
 
 gem 'mocha', group: [:test], require: false
+
+gem 'omniauth'
+gem 'omniauth-google-apps'

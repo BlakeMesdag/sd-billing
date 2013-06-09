@@ -3,7 +3,7 @@ class Billing.InvoicesController extends Batman.Controller
   index: ->
     Billing.Invoice.load (err, invoices) =>
       if !err
-        @set 'invoices', invoices
+        @set 'invoices', Billing.Invoice.get('loaded')
 
   show: (params) ->
     Billing.Invoice.find params.id, (err, invoice) =>
@@ -29,3 +29,12 @@ class Billing.InvoicesController extends Batman.Controller
      invoice.set('stripe_token', response.id)
      invoice.save (err, response) ->
        console.log 'saved'
+
+   initNewInvoice: (invoice) =>
+     @set 'newInvoice', new Billing.Invoice
+
+   createInvoice: (invoice) =>
+     invoice.save (err, invoice) =>
+       if !err
+         Billing.Invoice.get('loaded').add(invoice)
+         @unset 'newInvoice'

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class InvoiceTest < ActiveSupport::TestCase
   test "create sends email" do
-    invoice = Invoice.create(email: "test@test.com", name: "test", description: "test", due_on: Time.now.utc + 7.days, amount: 20.00)
+    invoice = Invoice.create(email: "test@test.com", name: "test", description: "test", due_on: Time.now.utc + 7.days, amount: 20.00, token: "1234567890")
     invoice.expects(:send_email).returns(nil)
 
     invoice.run_callbacks(:commit)
@@ -41,7 +41,7 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_equal 'failed', invoice.status
   end
 
-  test "Name, email, description, amount, due_on are required" do
+  test "Name, email, description, amount, due_on, token are required" do
     invoice = Invoice.new
 
     assert !invoice.valid?
@@ -50,5 +50,6 @@ class InvoiceTest < ActiveSupport::TestCase
     assert invoice.errors[:description]
     assert invoice.errors[:amount]
     assert invoice.errors[:due_on]
+    assert invoice.errors[:token]
   end
 end

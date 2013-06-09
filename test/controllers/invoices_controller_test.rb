@@ -4,9 +4,10 @@ class InvoicesControllerTest < ActionController::TestCase
   def setup
     @invoice = invoices(:bobserver)
   end
-  test "should get index" do
+  test "index should redirect" do
     get :index
-    assert_response :success
+    assert_response :redirect
+    assert_redirected_to controller: 'sessions', action: 'new'
   end
 
   test "should get show" do

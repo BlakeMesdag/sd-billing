@@ -16,5 +16,34 @@
         </tr>
       </tbody>
     </table>
+    <span class="btn btn-small btn-primary" data-hideif="newInvoice" data-event-click="initNewInvoice">New Invoice</span>
+  </div>
+</div>
+
+<div class="row" data-showif="newInvoice" style="display: none">
+  <div class="span12">
+    <div class="well">
+      <table>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td><input type="text" data-bind="newInvoice.name"></input></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><input type="email" data-bind="newInvoice.email"></input></td>
+          </tr>
+          <tr>
+            <td>Amount</td>
+            <td><input class="input input-mini" type="text" data-bind="newInvoice.amount"></input></td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td><input type="text" data-bind="newInvoice.description"></input></td>
+          </tr>
+        </tbody>
+      </table>
+      <span class="btn btn-small btn-primary" data-event-click="createInvoice | withArguments newInvoice">Create Invoice</span>
+    </div>
   </div>
 </div>
