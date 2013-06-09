@@ -1,0 +1,42 @@
+<div class"row">
+  <div class="span6 offset3">
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <td>Status</td>
+          <td><span class="label"
+                    data-addclass-label-success="invoice.status | equals 'paid'"
+                    data-addclass-label-warning="invoice.status | equals 'failed'"
+                    data-bind="invoice.status | capitalize"></span</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td data-bind="invoice.description"></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td data-bind="invoice.name"></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td data-bind="invoice.email"></td>
+        </tr>
+        <tr>
+          <td>Amount</td>
+          <td data-bind="invoice.amount | prepend '$'"></td>
+        </tr>
+        <tr>
+          <td>Due On</td>
+          <td data-bind="invoice.due_on"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row-fluid">
+      <div class="span12">
+        <div style="width: 70px; margin-left: auto; margin-right: auto;">
+          <span class="btn btn-small btn-primary" data-event-click="payInvoice | withArguments invoice">Pay Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

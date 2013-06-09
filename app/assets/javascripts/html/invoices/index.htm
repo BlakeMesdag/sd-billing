@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Name</th>
+        <th>Email</th>
+      </thead>
+      <tbody data-foreach-invoice="invoices">
+        <tr data-event-click="goToInvoice | withArguments invoice">
+          <td data-bind="invoice.amount | prepend '$'"></td>
+          <td data-bind="invoice.description"></td>
+          <td data-bind="invoice.name"></td>
+          <td data-bind="invoice.email"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

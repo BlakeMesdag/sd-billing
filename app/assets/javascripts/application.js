@@ -12,5 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require batman.jquery
+//= require batman.rails
+//= require billing
+//= require encode_timestamps
+//= require view_store
+//= require_tree ./models
+//= require_tree ./controllers
+//= require_tree ./html
+
+$(document).ready(function(){
+  Billing.run()
+});
