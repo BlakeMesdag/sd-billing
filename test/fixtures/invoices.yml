@@ -8,4 +8,4 @@ bobserver:
   name: Bob Tester
   due_on: 2013-06-08 22:52:39
   status: MyString
-  paid_on: 2013-06-08 22:52:39
+  paid_on:

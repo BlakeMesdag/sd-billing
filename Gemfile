@@ -45,3 +45,5 @@ gem 'debugger', group: [:development, :test]
 gem 'less-rails-bootstrap'
 
 gem 'stripe'
+
+gem 'mocha', group: [:test], require: false
