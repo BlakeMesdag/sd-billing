@@ -27,8 +27,8 @@ class Billing.InvoicesController extends Batman.Controller
    invoicePaidCallback: (response) =>
      invoice = @get('invoice')
      invoice.set('stripe_token', response.id)
-     invoice.save (err, response) ->
-       console.log 'saved'
+     invoice.save (err, response) =>
+       @set('invoice', invoice)
 
    initNewInvoice: (invoice) =>
      @set 'newInvoice', new Billing.Invoice

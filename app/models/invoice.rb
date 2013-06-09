@@ -12,12 +12,10 @@ class Invoice < ActiveRecord::Base
   rescue Stripe::CardError
     self.stripe_token = nil
     self.status = "failed"
-  ensure
-    save
   end
 
   def should_charge?
-    stripe_token_changed? && paid_on.nil?
+    stripe_token_changed? && stripe_token && paid_on.nil?
   end
 
   def generate_token
@@ -38,7 +36,7 @@ class Invoice < ActiveRecord::Base
   before_validation :generate_due_on, unless: :due_on, on: :create
 
   after_commit :send_email, on: :create
-  after_commit :charge_stripe_token, if: :should_charge?
+  before_save :charge_stripe_token, if: :should_charge?
 
   validates :name, :email, :description, :amount, :due_on, :token, presence: :true
 end
