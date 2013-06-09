@@ -21,4 +21,6 @@ class Invoice < ActiveRecord::Base
 
   after_commit :send_email, on: :create
   after_commit :charge_stripe_token, if: :should_charge?
+
+  validates :name, :email, :description, :amount, :due_on, presence: :true
 end
