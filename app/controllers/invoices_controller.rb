@@ -13,13 +13,14 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    @invoice.update_attribute(:stripe_token, params[:invoice][:stripe_token])
-    respond_with(@invoice)
+    @invoice.update_attribute(:stripe_token, params[:invoice][:stripe_token].to_s)
+
+    render json: { invoice: @invoice }.to_json
   end
 
   private
 
   def load_invoice
-    @invoice = Invoice.where(token: params[:id]).first
+    @invoice = Invoice.where(token: params[:id].to_s).first
   end
 end

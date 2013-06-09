@@ -1,21 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  amount: 9.99
-  token: MyString
-  description: MyString
-  email: MyString
-  name: MyString
-  due_on: 2013-06-08 22:52:39
-  status: MyString
-  paid_on: 2013-06-08 22:52:39
-
-two:
-  amount: 9.99
-  token: MyString
-  description: MyString
-  email: MyString
-  name: MyString
+bobserver:
+  amount: 20.00
+  token: 1234567890
+  description: Server
+  email: bob@tester.com
+  name: Bob Tester
   due_on: 2013-06-08 22:52:39
   status: MyString
   paid_on: 2013-06-08 22:52:39
