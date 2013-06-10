@@ -10,7 +10,8 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    respond_with(@invoice)
+    return respond_with(@invoice) if @invoice
+    render json: '{}', status: 404
   end
 
   def update
