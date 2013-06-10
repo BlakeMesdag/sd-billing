@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
 
-  before_filter :load_invoice, only: [:show, :update]
-  before_filter :ensure_user_logged_in, unless: :showing_invoice?, only: [:index, :create]
+  before_filter :load_invoice, only: [:show, :update, :destroy]
+  before_filter :ensure_user_logged_in, unless: :showing_invoice?, except: [:show, :update]
 
   respond_to :html, :json
 
@@ -22,6 +22,11 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.create(invoice_params)
 
+    render json: { invoice: @invoice }.to_json
+  end
+
+  def destroy
+    @invoice.destroy
     render json: { invoice: @invoice }.to_json
   end
 

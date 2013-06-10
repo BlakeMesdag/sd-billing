@@ -6,22 +6,25 @@
         <th>Description</th>
         <th>Name</th>
         <th>Email</th>
+        <th></th>
       </thead>
       <tbody data-foreach-invoice="invoices">
-        <tr data-event-click="goToInvoice | withArguments invoice">
-          <td data-bind="invoice.amount | prepend '$'"></td>
-          <td data-bind="invoice.description"></td>
-          <td data-bind="invoice.name"></td>
-          <td data-bind="invoice.email"></td>
+        <tr>
+          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.amount | prepend '$'"></td>
+          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.description"></td>
+          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.name"></td>
+          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.email"></td>
+          <td><span class="btn btn-danger btn-mini" data-event-click="destroyInvoice | withArguments invoice"><i class="icon icon-white icon-trash"></i></span></td>
         </tr>
       </tbody>
     </table>
+
     <span class="btn btn-small btn-primary" data-hideif="newInvoice" data-event-click="initNewInvoice">New Invoice</span>
   </div>
 </div>
 
 <div class="row" data-showif="newInvoice" style="display: none">
-  <div class="span12">
+  <div class="span5">
     <div class="well">
       <table>
         <tbody>
@@ -35,7 +38,12 @@
           </tr>
           <tr>
             <td>Amount</td>
-            <td><input class="input input-mini" type="text" data-bind="newInvoice.amount"></input></td>
+            <td>
+              <div class="input-prepend">
+                <span class="add-on">$</span>
+                <input class="input input-mini" type="text" data-bind="newInvoice.amount"></input>
+              </div>
+            </td>
           </tr>
           <tr>
             <td>Description</td>
@@ -43,7 +51,9 @@
           </tr>
         </tbody>
       </table>
-      <span class="btn btn-small btn-primary" data-event-click="createInvoice | withArguments newInvoice">Create Invoice</span>
+      <span class="btn btn-small btn-primary"
+            data-event-click="createInvoice | withArguments newInvoice">Create Invoice</span>
+      <span class="btn btn-small btn-danger" data-event-click="cancelNewInvoice">Cancel</span>
     </div>
   </div>
 </div>

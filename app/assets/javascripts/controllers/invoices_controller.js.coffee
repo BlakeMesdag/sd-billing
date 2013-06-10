@@ -38,3 +38,12 @@ class Billing.InvoicesController extends Batman.Controller
        if !err
          Billing.Invoice.get('loaded').add(invoice)
          @unset 'newInvoice'
+
+   destroyInvoice: (invoice) =>
+     return unless confirm("Are you sure you want to destroy #{invoice.get('description')}?")
+     invoice.destroy (err, invoice) =>
+       if !err
+         Billing.Invoice.get('loaded').remove(invoice)
+
+   cancelNewInvoice: ->
+     @unset 'newInvoice'

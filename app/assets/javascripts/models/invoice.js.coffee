@@ -14,3 +14,9 @@ class Billing.Invoice extends Batman.Model
         'label-success'
       when 'failed'
         'label-warning'
+
+  @wrapAccessor 'amount', (core) ->
+    get: (key) ->
+      amount = core.get.call(this, key)
+      if amount
+        parseFloat(amount).toFixed(2)

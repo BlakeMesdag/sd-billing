@@ -5,7 +5,7 @@ SdBilling::Application.routes.draw do
   get '/logout', :to => 'sessions#destroy', :as => :logout
 
   scope format: true, constraints: { format: :json } do
-    resources :invoices, only: [:index, :show, :update, :create]
+    resources :invoices, only: [:index, :show, :update, :create, :destroy]
   end
 
   match "/*all" => "invoices#index", via: [:get, :post]
