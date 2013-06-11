@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    render :logout, :layout => "sessions"
+    render text: "Logged out, goodbye"
   end
 
   def failure
