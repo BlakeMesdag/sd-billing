@@ -12,14 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require batman.jquery
-//= require batman.rails
+
+//= require batman/batman
+//= require batman/batman.jquery
+//= require batman/batman.rails
+
 //= require billing
-//= require encode_timestamps
-//= require view_store
-//= require_tree ./models
-//= require_tree ./controllers
-//= require_tree ./html
+
+//= require batman/encode_timestamps
+//= require batman/view_store
+
+//= require_tree .
 
 $(document).ready(function(){
   Billing.run()

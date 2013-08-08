@@ -13,7 +13,7 @@
           <td>Status</td>
           <td><span class="label"
                     data-addclass-label-success="invoice.status | equals 'paid'"
-                    data-addclass-label-warning="invoice.status | equals 'failed'"
+                    data-addclass-label-important="invoice.status | equals 'failed'"
                     data-bind="invoice.status | capitalize"></span</td>
         </tr>
         <tr>
@@ -33,8 +33,8 @@
           <td data-bind="invoice.amount | prepend '$'"></td>
         </tr>
         <tr>
-          <td>Due On</td>
-          <td data-bind="invoice.due_on"></td>
+          <td>Due</td>
+          <td data-bind="friendlyInvoiceDueOn"></td>
         </tr>
       </tbody>
     </table>
