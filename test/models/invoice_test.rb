@@ -13,12 +13,11 @@ class InvoiceTest < ActiveSupport::TestCase
 
     Stripe::Customer.expects(:create).with(email: "bob@tester.com", card: "1234567890").returns(stub(id: 1))
     Stripe::Charge.expects(:create).with(customer: 1, amount: 2000, description: 'Server', currency: 'CAD').returns(nil)
-    invoice.expects(:save).returns(nil)
 
     assert_nil invoice.paid_on
 
     invoice.assign_attributes(stripe_token: '1234567890')
-    invoice.run_callbacks(:commit)
+    invoice.run_callbacks(:save)
 
     assert_not_nil invoice.paid_on
     assert_equal 'paid', invoice.status
@@ -30,12 +29,11 @@ class InvoiceTest < ActiveSupport::TestCase
     Stripe::Customer.expects(:create).with(email: "bob@tester.com", card: "1234567890").returns(stub(id: 1))
     Stripe::CardError.any_instance.expects(:initialize).returns(nil)
     Stripe::Charge.expects(:create).with(customer: 1, amount: 2000, description: 'Server', currency: 'CAD').raises(Stripe::CardError)
-    invoice.expects(:save).returns(nil)
 
     assert_nil invoice.paid_on
 
     invoice.assign_attributes(stripe_token: '1234567890')
-    invoice.run_callbacks(:commit)
+    invoice.run_callbacks(:save)
 
     assert_nil invoice.paid_on
     assert_equal 'failed', invoice.status

@@ -16,6 +16,8 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "update only updates stripe_token" do
+    Invoice.any_instance.stubs(:should_charge?).returns(false)
+
     put :update, id: @invoice.token, invoice: { stripe_token: "0987654321", name: "Test Only" }, format: :json
     assert_response :success
 
