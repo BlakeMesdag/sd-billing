@@ -9,7 +9,8 @@ class Invoice < ActiveRecord::Base
     charge = Stripe::Charge.create(customer: customer.id, amount: (amount * 100).to_i, description: description, currency: 'CAD')
     self.paid_on = Time.now.utc
     self.status = "paid"
-  rescue Stripe::CardError
+  rescue Stripe::CardError => e
+    Rails.logger.info "[Invoice] Failed to charge stripe token: #{stripe_token}. Message: #{e.message}"
     self.stripe_token = nil
     self.status = "failed"
   end
