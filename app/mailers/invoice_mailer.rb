@@ -1,5 +1,5 @@
 class InvoiceMailer < ActionMailer::Base
-  default from: "billing@somethingdevio.us"
+  default from: "billing@#{ENV['SENDGRID_DOMAIN']}"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
