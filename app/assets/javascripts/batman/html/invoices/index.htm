@@ -9,11 +9,11 @@
         <th></th>
       </thead>
       <tbody data-foreach-invoice="invoices">
-        <tr>
-          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.amount | prepend '$'"></td>
-          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.description"></td>
-          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.name"></td>
-          <td data-event-click="goToInvoice | withArguments invoice" data-bind="invoice.email"></td>
+        <tr data-route="routes.invoices[invoice]">
+          <td data-bind="invoice.amount | prepend '$'"></td>
+          <td data-bind="invoice.description"></td>
+          <td data-bind="invoice.name"></td>
+          <td data-bind="invoice.email"></td>
           <td><span class="btn btn-danger btn-mini" data-event-click="destroyInvoice | withArguments invoice"><i class="icon icon-white icon-trash"></i></span></td>
         </tr>
       </tbody>

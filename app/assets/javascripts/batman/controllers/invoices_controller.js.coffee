@@ -1,17 +1,23 @@
 class Billing.InvoicesController extends Batman.Controller
   routingKey: 'invoices'
+
   index: ->
+    NProgress.start()
+
     Billing.Invoice.load (err, invoices) =>
       if !err
         @set 'invoices', Billing.Invoice.get('loaded')
+      NProgress.done()
+
 
   show: (params) ->
+    NProgress.start()
+
     Billing.Invoice.find params.id, (err, invoice) =>
       if !err
         @set 'invoice', invoice
 
-  goToInvoice: (invoice) ->
-    Billing.navigator.redirect("/invoices/#{invoice.get('token')}")
+      NProgress.done()
 
   payInvoice: (invoice) ->
     StripeCheckout.open
