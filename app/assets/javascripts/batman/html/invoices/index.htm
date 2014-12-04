@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <th>Amount</th>
@@ -14,46 +14,49 @@
           <td data-bind="invoice.description"></td>
           <td data-bind="invoice.name"></td>
           <td data-bind="invoice.email"></td>
-          <td><span class="btn btn-danger btn-mini" data-event-click="destroyInvoice | withArguments invoice"><i class="icon icon-white icon-trash"></i></span></td>
+          <td><span class="btn btn-danger btn-xs" data-event-click="destroyInvoice | withArguments invoice"><i class="glyphicon glyphicon-white glyphicon-trash"></i></span></td>
         </tr>
       </tbody>
     </table>
 
-    <span class="btn btn-small btn-primary" data-hideif="newInvoice" data-event-click="initNewInvoice">New Invoice</span>
+    <span class="btn btn-sm btn-primary" data-hideif="newInvoice" data-event-click="initNewInvoice">New Invoice</span>
   </div>
 </div>
 
 <div class="row" data-showif="newInvoice" style="display: none">
-  <div class="span5">
+  <div class="col-md-4">
     <div class="well">
-      <table>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td><input type="text" data-bind="newInvoice.name"></input></td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td><input type="email" data-bind="newInvoice.email"></input></td>
-          </tr>
-          <tr>
-            <td>Amount</td>
-            <td>
-              <div class="input-prepend">
-                <span class="add-on">$</span>
-                <input class="input input-mini" type="text" data-bind="newInvoice.amount"></input>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Description</td>
-            <td><input type="text" data-bind="newInvoice.description"></input></td>
-          </tr>
-        </tbody>
-      </table>
-      <span class="btn btn-small btn-primary"
-            data-event-click="createInvoice | withArguments newInvoice">Create Invoice</span>
-      <span class="btn btn-small btn-danger" data-event-click="cancelNewInvoice">Cancel</span>
+      <form role="form" class="form-horizontal" action="#">
+        <div class="form-group">
+          <label class="control-label col-md-2">Name</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" data-bind="newInvoice.name"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Email</label>
+          <div class="col-md-10">
+            <input class="form-control" type="email" data-bind="newInvoice.email"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Amount</label>
+          <div class="col-md-10">
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input class="form-control" type="text" data-bind="newInvoice.amount"></input>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-3">Description</label>
+          <div class="col-md-9">
+            <input class="form-control" type="text" data-bind="newInvoice.description"></input>
+          </div>
+        </div>
+        <span class="btn btn-sm btn-primary" data-event-click="createInvoice | withArguments newInvoice">Create Invoice</span>
+        <span class="btn btn-sm btn-danger" data-event-click="cancelNewInvoice">Cancel</span>
+      </form>
     </div>
   </div>
 </div>
